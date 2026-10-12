@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>CRUD SENA - Python</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background: #f4f4f9; }
+        .container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        input, button { padding: 10px; margin: 5px 0; width: 100%; box-sizing: border-box; }
+        button { background: #28a745; color: white; border: none; cursor: pointer; }
+        table { width: 100%; margin-top: 20px; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        a { color: red; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Gestión de Productos (CRUD SENA)</h2>
+        
+        <!-- Formulario para CREAR -->
+        <form action="/agregar" method="POST">
+            <input type="text" name="nombre" placeholder="Nombre del producto" required>
+            <input type="number" step="any" name="precio" placeholder="Precio" required>
+            <button type="submit">Guardar Producto</button>
+        </form>
+
+        <!-- Tabla para LEER -->
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Acciones</th>
+            </tr>
+            {% for p in productos %}
+            <tr>
+                <td>{{ p['id'] }}</td>
+                <td>{{ p['nombre'] }}</td>
+                <td>${{ p['precio'] }}</td>
+                <td><a href="/eliminar/{{ p['id'] }}">Eliminar</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
